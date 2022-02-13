@@ -1,2 +1,2 @@
 # Callorie-counter
-Simple website for counting consumed callories
+Simple website for counting consumed calories
