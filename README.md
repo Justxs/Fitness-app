@@ -1,2 +1,2 @@
 # Callorie-counter
-Simple website for counting consumed calories
+repository for team future project
