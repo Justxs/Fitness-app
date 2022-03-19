@@ -1,11 +1,13 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AppRoutes from './components/routing/AppRoutes';
 
 function App() {
+  if(localStorage.getItem('isLoggedIn') === null){
+    localStorage.setItem('isLoggedIn', 'true');
+  }
   return (
-    <div className="container">
-      <h1 className="text-primary">Workspace test</h1>
-    </div>
+      <AppRoutes isLoggedIn={localStorage.getItem('isLoggedIn') === 'true'}/>
   );
 }
 
