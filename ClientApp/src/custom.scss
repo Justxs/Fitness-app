@@ -1,0 +1,21 @@
+// Custom variables
+$primary: #605F5F; // Primary text color
+$secondary: #FFFFFF; // Secondary text color
+$light: #EEEDF0; // Primary background color
+
+
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// Custom theme colors
+$custom-theme-colors:(
+    "altlight": #FCFCFD,
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+
+// Import bootstrap styles
+@import "../node_modules/bootstrap/scss/bootstrap";

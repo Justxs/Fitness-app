@@ -1,5 +1,5 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './custom.scss';
 import AppRoutes from './components/routing/AppRoutes';
 
 function App() {

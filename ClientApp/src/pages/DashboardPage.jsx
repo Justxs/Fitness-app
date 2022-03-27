@@ -1,7 +1,9 @@
+import '../custom.scss';
+
 function DashboardPage() {
   return (
-    <div>
-      <h1>This is dashboard page!</h1>
+    <div className="text-primary bg-light">
+      <h1 >This is dashboard page!</h1>
     </div>
   );
 }
