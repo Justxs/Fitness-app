@@ -1,7 +1,9 @@
+import '../custom.scss';
+
 function UserSettingsPage() {
   return (
     <div>
-      <h1>This is user settings page!</h1>
+      <h1>Setings</h1>
     </div>
   );
 }
