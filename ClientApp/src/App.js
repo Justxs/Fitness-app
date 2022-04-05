@@ -1,13 +1,11 @@
 import AppRoutes from './components/routing/AppRoutes';
+import { useAuth } from './hooks/useAuth';
 import './custom.scss';
 
 function App() {
-  if(localStorage.getItem('isLoggedIn') === null){
-    localStorage.setItem('isLoggedIn', 'true');
-  }
+  const { isLoggedIn } = useAuth();
   return (
-      
-      <AppRoutes isLoggedIn={localStorage.getItem('isLoggedIn') === 'true'}/>
+      <AppRoutes isLoggedIn={isLoggedIn}/>
   );
 }
 

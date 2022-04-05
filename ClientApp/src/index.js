@@ -2,15 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
-
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './hooks/useAuth';
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Header />
-      <App />
-    </Router>
+    <AuthProvider>
+      <BrowserRouter>
+        <Header />
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
