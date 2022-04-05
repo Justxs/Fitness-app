@@ -1,7 +1,9 @@
+import '../custom.scss';
+
 function DashboardPage() {
   return (
-    <div>
-      <h1>This is dashboard page!</h1>
+    <div className="Dash board page">
+      <h1>Dashboard</h1>
     </div>
   );
 }

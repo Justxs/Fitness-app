@@ -17,9 +17,10 @@ function AppRoutes({ isLoggedIn }) {
       <Route
         element={<AppRoute condition={isLoggedIn} redirectionPath={"/login"} />}
       >
-        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/userSettings" element={<UserSettingsPage />} />
+        <Route path="/home" element={<HomePage />} />
       </Route>
       <Route
         element={

@@ -1,0 +1,11 @@
+// Custom variables
+$primary: #79B2FE; // Primary text color
+$secondary: #605F5F; // Secondary text color
+$light: #FCFCFD; // Primary background color
+
+
+$body-bg: #EEEDF0; // Body background
+$body-color: #605F5F; // body text color
+
+// Import bootstrap styles
+@import "../node_modules/bootstrap/scss/bootstrap";

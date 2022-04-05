@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Header from './components/Header';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth';
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <BrowserRouter>
+        <Header />
         <App />
       </BrowserRouter>
     </AuthProvider>
