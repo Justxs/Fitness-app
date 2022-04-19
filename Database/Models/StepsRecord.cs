@@ -7,9 +7,9 @@ namespace FitnessApp.Database.Models
     {
         public DateTime? Date { get; set; }
         public int? Steps { get; set; }
-        public int IdStepsRecord { get; set; }
-        public int FkCaloriesRecordidCaloriesRecord { get; set; }
+        public int ID { get; set; }
+        public int ID_CaloriesRecord { get; set; }
 
-        public virtual CaloriesRecord FkCaloriesRecordidCaloriesRecordNavigation { get; set; } = null!;
+        public virtual CaloriesRecord ID_CaloriesRecordNav { get; set; } = null!;
     }
 }

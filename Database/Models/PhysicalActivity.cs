@@ -12,7 +12,7 @@ namespace FitnessApp.Database.Models
 
         public string? Name { get; set; }
         public int? Calories1min { get; set; }
-        public int IdPhysicalActivity { get; set; }
+        public int ID { get; set; }
 
         public virtual ICollection<PhysicalActivityRecord> PhysicalActivityRecords { get; set; }
     }

@@ -5,9 +5,9 @@ namespace FitnessApp.Database.Models
 {
     public partial class AppliesTo
     {
-        public int FkFoodProductidFoodProduct { get; set; }
-        public int FkFoodAllergyidFoodAllergy { get; set; }
+        public int ID_FoodProduct { get; set; }
+        public int ID_FoodAllergy { get; set; }
 
-        public virtual FoodProduct FkFoodProductidFoodProductNavigation { get; set; } = null!;
+        public virtual FoodProduct ID_FoodProductNav { get; set; } = null!;
     }
 }

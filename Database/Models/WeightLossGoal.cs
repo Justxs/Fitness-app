@@ -15,10 +15,10 @@ namespace FitnessApp.Database.Models
         public DateTime? EndDate { get; set; }
         public double? EndWeight { get; set; }
         public int? Calories { get; set; }
-        public int IdWeightLossGoal { get; set; }
-        public int FkUserdataidUserdata { get; set; }
+        public int ID { get; set; }
+        public int ID_UserData { get; set; }
 
-        public virtual Userdatum FkUserdataidUserdataNavigation { get; set; } = null!;
+        public virtual UserData ID_UserDataNav { get; set; } = null!;
         public virtual ICollection<Diet> Diets { get; set; }
     }
 }

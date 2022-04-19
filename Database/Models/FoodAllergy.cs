@@ -11,7 +11,7 @@ namespace FitnessApp.Database.Models
         }
 
         public string? Name { get; set; }
-        public int IdFoodAllergy { get; set; }
+        public int ID { get; set; }
 
         public virtual ICollection<CanHave> CanHaves { get; set; }
     }

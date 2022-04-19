@@ -10,10 +10,10 @@ namespace FitnessApp.Database.Models
             EatingActivityRecords = new HashSet<EatingActivityRecord>();
         }
 
-        public int IdDiet { get; set; }
-        public int FkWeightLossGoalidWeightLossGoal { get; set; }
+        public int ID { get; set; }
+        public int ID_WeightLossGoal { get; set; }
 
-        public virtual WeightLossGoal FkWeightLossGoalidWeightLossGoalNavigation { get; set; } = null!;
+        public virtual WeightLossGoal ID_WeightLossGoalNav { get; set; } = null!;
         public virtual ICollection<EatingActivityRecord> EatingActivityRecords { get; set; }
     }
 }

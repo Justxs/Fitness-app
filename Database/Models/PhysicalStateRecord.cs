@@ -8,9 +8,9 @@ namespace FitnessApp.Database.Models
         public DateTime? Date { get; set; }
         public double? Weight { get; set; }
         public double? Height { get; set; }
-        public int IdPhysicalStateRecord { get; set; }
-        public int FkUserdataidUserdata { get; set; }
+        public int ID { get; set; }
+        public int ID_UserData { get; set; }
 
-        public virtual Userdatum FkUserdataidUserdataNavigation { get; set; } = null!;
+        public virtual UserData ID_UserDataNav { get; set; } = null!;
     }
 }

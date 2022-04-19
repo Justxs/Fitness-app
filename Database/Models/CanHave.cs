@@ -5,9 +5,9 @@ namespace FitnessApp.Database.Models
 {
     public partial class CanHave
     {
-        public int FkFoodAllergyidFoodAllergy { get; set; }
-        public int FkUserdataidUserdata { get; set; }
+        public int ID_FoodAllergy { get; set; }
+        public int ID_UserData { get; set; }
 
-        public virtual FoodAllergy FkFoodAllergyidFoodAllergyNavigation { get; set; } = null!;
+        public virtual FoodAllergy ID_FoodAllergyNav { get; set; } = null!;
     }
 }

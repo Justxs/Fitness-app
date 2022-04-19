@@ -5,9 +5,9 @@ namespace FitnessApp.Database.Models
 {
     public partial class Prefer
     {
-        public int FkFoodCategoryidFoodCategory { get; set; }
-        public int FkUserdataidUserdata { get; set; }
+        public int ID_FoodCategory { get; set; }
+        public int ID_UserData { get; set; }
 
-        public virtual FoodCategory FkFoodCategoryidFoodCategoryNavigation { get; set; } = null!;
+        public virtual FoodCategory ID_FoodCategoryNav { get; set; } = null!;
     }
 }
