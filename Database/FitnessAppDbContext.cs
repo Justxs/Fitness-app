@@ -7,8 +7,10 @@ namespace FitnessApp.Database.Models
 {
     public partial class FitnessAppDbContext : DbContext
     {
-        public FitnessAppDbContext()
+        public readonly string connectionName = "FitnessAppDatabase";
+        public FitnessAppDbContext(string connName = "FitnessAppDatabase")
         {
+            connName = connectionName;
         }
 
         public FitnessAppDbContext(DbContextOptions<FitnessAppDbContext> options)
@@ -38,8 +40,7 @@ namespace FitnessApp.Database.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress; Database=FitnessApp; Trusted_Connection=Yes");
+                optionsBuilder.UseSqlServer(connectionName);
             }
         }
 
