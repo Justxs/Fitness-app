@@ -11,8 +11,12 @@ function HomePage() {
           to see your progress and change your routine wich will help you get your wanted 
           results.
         </p>
+        <div className="d-flex justify-content-center">
+          <Button variant="primary" size="sm">
+            <b className='text-light'>Get started</b>
+          </Button>
+        </div>
         <img className='img-fluid' src={fitnessImg}  alt="Fitness" />
-        <Button variant="primary" size="lg"><b className='text-light'>Get started</b></Button>
       </div>
     </div>
   );
