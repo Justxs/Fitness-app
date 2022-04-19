@@ -53,6 +53,6 @@ Install:
 ```
 git clone https://www.github.com/Justxs/Fitness-app.git
 cd Fitness-app && cd ClientApp
-npm install
+sudo npm install
 npm start
 ```
