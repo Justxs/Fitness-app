@@ -29,22 +29,30 @@ Requirements:
  - [Node.js](https://nodejs.org/en/download/current/) (>= 17.7.2)
 
 Install:
-    git clone https://www.github.com/Justxs/Fitness-app.git
-    cd Fitness-app && cd ClientApp
-    npm install
-    npm start
+```
+git clone https://www.github.com/Justxs/Fitness-app.git
+cd Fitness-app && cd ClientApp
+npm install
+npm start
+```
 
 ### Linux
 
 Requirements:
  - Ubuntu 20.04 LTS:
-    curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
-    sudo apt-get install -y nodejs
+```
+curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
  - Arch Linux:
-    sudo pacman -S nodejs npm
+```
+sudo pacman -S nodejs npm
+```
 
 Install:
-    git clone https://www.github.com/Justxs/Fitness-app.git
-    cd Fitness-app && cd ClientApp
-    npm install
-    npm start
+```
+git clone https://www.github.com/Justxs/Fitness-app.git
+cd Fitness-app && cd ClientApp
+npm install
+npm start
+```
