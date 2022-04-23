@@ -1,9 +1,12 @@
 import '../custom.scss';
+import CaloryCards from '../components/dashboard_components/CaloryCards';
+
 
 function DashboardPage() {
+
   return (
-    <div className="Dash board page">
-      <h1>Dashboard</h1>
+    <div className="Dash_board_page">
+      <CaloryCards/>
     </div>
   );
 }
