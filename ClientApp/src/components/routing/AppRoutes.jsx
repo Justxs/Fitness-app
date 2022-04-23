@@ -5,6 +5,7 @@ import HomePage from "../../pages/HomePage";
 import LoginPage from "../../pages/LoginPage";
 import PageNotFoundPage from "../../pages/PageNotFoundPage";
 import UserSettingsPage from "../../pages/UserSettingsPage";
+import FoodPage from "../../pages/FoodPage";
 import PropTypes from "prop-types";
 
 AppRoutes.propTypes = {
@@ -21,6 +22,7 @@ function AppRoutes({ isLoggedIn }) {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/userSettings" element={<UserSettingsPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/food" element={<FoodPage />} />
       </Route>
       <Route
         element={

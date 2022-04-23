@@ -18,6 +18,7 @@ function Header() {
               <Nav variant="pills">
                 <Nav.Link className='p-3' eventKey="link-0" as={Link} to="/home"><b>Home</b></Nav.Link>
                 <Nav.Link className='p-3' eventKey="link-1" as={Link} to="/dashboard"><b>Dashboard</b></Nav.Link>
+                <Nav.Link className='p-3' eventKey="link-" as={Link} to="/food"><b>Food entry</b></Nav.Link>
                 <Nav.Link className='p-3' eventKey="link-2" as={Link} to="/userSettings"><b>Settings</b></Nav.Link>
               </Nav>
             </Navbar.Collapse>
