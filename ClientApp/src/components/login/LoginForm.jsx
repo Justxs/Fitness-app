@@ -1,6 +1,5 @@
 import { useState } from "react";
-import InputField from "./InputField";
-import InputCheckbox from "./InputCheckbox";
+import "./LoginForm.css";
 
 function LoginForm({ redirection, loginFunc, isLoading, handleSubmit }) {
   const [email, setEmail] = useState("");
@@ -24,42 +23,56 @@ function LoginForm({ redirection, loginFunc, isLoading, handleSubmit }) {
   };
 
   return (
-    <div
-      className="card justify-content-center mx-auto  align-middle p-4"
-      style={{ width: "25rem", top: "10rem" }}
-    >
+    <div className="card justify-content-center mx-auto  align-middle p-4 form">
       <form>
-        <InputField
-          type="email"
-          name="email"
-          value={email}
-          description="Enter your email"
-          onChange={(e) => onFormChange(e)}
-          placeholder="example@domain.com"
-          disabled={isLoading}
-          required={true}
-        />
-        <InputField
-          type="password"
-          name="password"
-          value={password}
-          description="Enter your password"
-          onChange={(e) => onFormChange(e)}
-          placeholder=""
-          disabled={isLoading}
-          required={true}
-        />
-        <InputCheckbox
-          name="rememberMe"
-          value={rememberMe}
-          description="Remember me"
-          onChange={(e) => onFormChange(e)}
-          disabled={isLoading}
-          required={false}
-        />
+        <label htmlFor={email}>{"Enter your email"}</label>
+        <div className="input-group mb-3">
+          <input
+            type={"email"}
+            className="form-control"
+            id={"email"}
+            name={"email"}
+            value={email}
+            onChange={(e) => onFormChange(e)}
+            placeholder={"example@domain.com"}
+            disabled={isLoading}
+            required={true}
+          />
+        </div>
+        <label htmlFor={"password"}>{"Enter your password"}</label>
+        <div className="input-group mb-3">
+          <input
+            type={"password"}
+            className="form-control"
+            id={"password"}
+            name={"password"}
+            value={password}
+            onChange={(e) => onFormChange(e)}
+            placeholder={"Enter your password"}
+            disabled={isLoading}
+            required={true}
+          />
+        </div>
+        <div>
+          <div className="input-group mb-3">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id={rememberMe}
+              name={rememberMe}
+              checked={rememberMe}
+              onChange={(e) => onFormChange(e)}
+              disabled={isLoading}
+              required={false}
+            />
+            <label className="formLabel" htmlFor={rememberMe}>
+              {"Remember me"}
+            </label>
+          </div>
+        </div>
       </form>
       <button
-        className="btn-primary m-2 w-25"
+        className="btn-primary formButton"
         onClick={() => loginFunc(email, password)}
       >
         Login
