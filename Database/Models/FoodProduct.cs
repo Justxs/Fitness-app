@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FitnessApp.Database.Models
 {
-    public partial class FoodProduct
+    public partial class FoodProduct: ID
     {
         public FoodProduct()
         {
@@ -11,11 +12,11 @@ namespace FitnessApp.Database.Models
             ContainsProds = new HashSet<ContainsProd>();
             EatingActivityRecords = new HashSet<EatingActivityRecord>();
         }
-
-        public string? Name { get; set; }
-        public int? Calories100g { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public int Calories100g { get; set; }
         public string? ImageUrl { get; set; }
-        public int ID { get; set; }
 
         public virtual ICollection<AppliesTo> AppliesTos { get; set; }
         public virtual ICollection<ContainsProd> ContainsProds { get; set; }
