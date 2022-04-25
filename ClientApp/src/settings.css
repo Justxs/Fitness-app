@@ -30,3 +30,15 @@
   #input-field {
     flex: 1;
   }  
+
+
+  .div-2 {
+    background-color: rgb(240, 240, 240);
+  }  
+
+  .background-custom {
+    background-color: rgb(247, 245, 246);
+  }
+  .background-blue {
+    background-color: rgb(97, 97, 120);
+  }
