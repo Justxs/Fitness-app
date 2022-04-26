@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FitnessApp.Database.Models
 {
-    public partial class UserData
+    public partial class UserData: ID
     {
         public UserData()
         {
@@ -11,10 +12,10 @@ namespace FitnessApp.Database.Models
             PhysicalStateRecords = new HashSet<PhysicalStateRecord>();
             WeightLossGoals = new HashSet<WeightLossGoal>();
         }
-
+        [Required]
         public string? FirstName { get; set; }
+        [Required]
         public string? LastName { get; set; }
-        public int ID { get; set; }
 
         public virtual ICollection<CaloriesRecord> CaloriesRecords { get; set; }
         public virtual ICollection<PhysicalStateRecord> PhysicalStateRecords { get; set; }

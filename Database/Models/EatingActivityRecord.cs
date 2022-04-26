@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessApp.Database.Models
 {
-    public partial class EatingActivityRecord
+    public partial class EatingActivityRecord: ID
     {
-        public int? Grams { get; set; }
-        public int ID { get; set; }
-        public int ID_CaloriesRecord { get; set; }
-        public int ID_FoodProduct { get; set; }
-        public int ID_Diet { get; set; }
+        [Required]
+        public int Grams { get; set; }
 
-        public virtual CaloriesRecord ID_CaloriesRecordNav { get; set; } = null!;
-        public virtual Diet ID_DietNav { get; set; } = null!;
-        public virtual FoodProduct ID_FoodProductNav { get; set; } = null!;
+        [ForeignKey(nameof(ID_CaloriesRecord_EatingActivityRecord))]
+        public virtual CaloriesRecord? CaloriesRecordObj { get; set; } = null!;
+        public int? ID_CaloriesRecord_EatingActivityRecord { get; set; }
+
+
+        [ForeignKey(nameof(ID_FoodProduct_EatingActivityRecord))]
+        public virtual FoodProduct? FoodProductObj { get; set; } = null!;
+        public int? ID_FoodProduct_EatingActivityRecord { get; set; }
     }
 }

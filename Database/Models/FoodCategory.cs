@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessApp.Database.Models
 {
-    public partial class FoodCategory
+    public partial class FoodCategory: ID
     {
         public FoodCategory()
         {
@@ -11,12 +13,13 @@ namespace FitnessApp.Database.Models
             NotPrefers = new HashSet<NotPrefer>();
             Prefers = new HashSet<Prefer>();
         }
+        [Required]
+        public string Name { get; set; }
 
-        public string? Name { get; set; }
-        public int ID { get; set; }
-        public int? ID_FoodCategory { get; set; }
+        [ForeignKey(nameof(ID_FoodCategory_FoodCategory))]
+        public virtual FoodCategory? FoodCategoryObj { get; set; }
+        public int? ID_FoodCategory_FoodCategory { get; set; }
 
-        public virtual FoodCategory? ID_FoodCategoryNav { get; set; }
         public virtual ICollection<FoodCategory> ID_FoodCategoryNav_Inv { get; set; }
         public virtual ICollection<NotPrefer> NotPrefers { get; set; }
         public virtual ICollection<Prefer> Prefers { get; set; }

@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessApp.Database.Models
 {
-    public partial class Diet
+    public partial class Diet: ID
     {
         public Diet()
         {
             EatingActivityRecords = new HashSet<EatingActivityRecord>();
         }
 
-        public int ID { get; set; }
-        public int ID_WeightLossGoal { get; set; }
+        
+        [ForeignKey(nameof(ID_WeightLossGoal_Diet))]
+        public virtual WeightLossGoal WeightLossGoalObj { get; set; } = null!;
+        public int ID_WeightLossGoal_Diet { get; set; }
 
-        public virtual WeightLossGoal ID_WeightLossGoalNav { get; set; } = null!;
         public virtual ICollection<EatingActivityRecord> EatingActivityRecords { get; set; }
     }
 }
