@@ -6,7 +6,7 @@ function FoodPage() {
   return (
     <div className='Food_page'>
         <CaloryEntry />
-        <EatenFoodList />
+        
     </div>
   )
 }
