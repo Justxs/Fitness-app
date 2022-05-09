@@ -2,6 +2,7 @@
 using FitnessApp.Database;
 using FitnessApp.Database.DTO;
 using FitnessApp.Database.Models;
+using FitnessApp.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.Controllers
@@ -10,69 +11,48 @@ namespace FitnessApp.Controllers
     [ApiController]
     public class FoodProductsController : Controller
     {
-        private readonly IMapper _mapper;
-        private readonly DatabaseUtils<FoodProduct> _dbUtils;
+        private readonly FoodProductsHandler _handler;
         public FoodProductsController(IMapper mapper, FitnessAppDbContext context)
         {
-            _mapper = mapper;
-            _dbUtils = new DatabaseUtils<FoodProduct>(context);
+            _handler = new FoodProductsHandler(context,mapper);
         }
-        [HttpGet("Get")]
-        public async Task<IActionResult> GetFoodProduct([FromQuery] int id)
+        [HttpGet]
+        public async Task<IActionResult> GetAllFoodProducts()
         {
-            try
-            {
-                FoodProduct FoodProduct = _dbUtils.GetElement((dbSet) => dbSet.FirstOrDefault(x => x.Id == id));
-                FoodProductDtoGet result = _mapper.Map<FoodProductDtoGet>(FoodProduct);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            List<FoodProductDtoGet> result = await _handler.GetAllFoodProductsAsync();
+            return Ok(result);
         }
-        [HttpPost("Add")]
-        public async Task<IActionResult> AddFoodProduct([FromBody] FoodProductDtoCreate FoodProductDto)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetFoodProduct(int id)
         {
-            try
-            {
-                FoodProduct spot = _mapper.Map<FoodProduct>(FoodProductDto);
-                spot = _dbUtils.AddElement(spot);
-                FoodProductDtoGet result = _mapper.Map<FoodProductDtoGet>(spot);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+           FoodProductDtoGet result = await _handler.GetFoodProductAsync(id);
+           return Ok(result);
         }
-        [HttpPut("Update")]
-        public async Task<IActionResult> UpdateFoodProduct([FromBody] FoodProductDtoUpdate FoodProductDto, [FromQuery] int id)
+        [HttpPost]
+        public async Task<IActionResult> AddFoodProduct([FromBody] FoodProductDtoForm foodProductDto)
         {
-            try
-            {
-                FoodProduct spot = _mapper.Map<FoodProduct>(FoodProductDto);
-                spot = _dbUtils.UpdateElement(id, spot);
-                FoodProductDtoGet result = _mapper.Map<FoodProductDtoGet>(spot);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            FoodProductDtoGet result = await _handler.AddFoodProductAsync(foodProductDto);
+            return Ok(result);
         }
-        [HttpDelete("Remove")]
-        public async Task<IActionResult> RemoveFoodProduct([FromQuery] int id)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateFoodProduct([FromBody] FoodProductDtoForm foodProductDto, int id)
         {
-            try
+            if (!_handler.Exists(id))
             {
-                FoodProduct spot = _dbUtils.DeleteElement(id);
-                return Ok(spot);
+                return NotFound();
             }
-            catch (Exception ex)
+            FoodProductDtoGet result = await _handler.UpdateFoodProductAsync(foodProductDto, id);
+            return Ok(result);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveFoodProduct(int id)
+        {
+            if (!_handler.Exists(id))
             {
-                return BadRequest(ex.Message);
+                return NotFound();
             }
+            FoodProductDtoGet result = await _handler.RemoveFoodProductAsync(id);
+            return Ok(result);
         }
     }
 }

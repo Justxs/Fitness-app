@@ -8,8 +8,8 @@ namespace FitnessApp.Configuration
     {
         public AutoMapperConfiguration()
         {
-            CreateMap<FoodProductDtoCreate, FoodProduct>(MemberList.None);
-            CreateMap<FoodProductDtoUpdate, FoodProduct>(MemberList.None);
+            CreateMap<FoodProductDtoForm, FoodProduct>(MemberList.None);
+            CreateMap<FoodProductDtoForm, FoodProduct>(MemberList.None);
             CreateMap<FoodProduct, FoodProductDtoGet>(MemberList.None);
             CreateMap<FoodProductDtoGet, FoodProduct>(MemberList.None);
         }

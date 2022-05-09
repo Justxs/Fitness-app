@@ -2,12 +2,14 @@
 
 namespace FitnessApp.Database.DTO
 {
-    public class FoodProductDtoCreate
+    public class FoodProductDtoForm
     {
         [Required]
         [MaxLength(128)]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
         [Required]
+        [Range(0,int.MaxValue)]
         public int Calories100g { get; set; }
         public string? ImageUrl { get; set; }
     }
