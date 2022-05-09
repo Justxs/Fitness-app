@@ -5,24 +5,40 @@ import EatenFoodList from './EatenFoodList'
 
 function CaloryEntry() {
   const [list, setList] = useState([]);
+  const [mealList, setMealList] = useState([]);
   
 
   const [meal, setValue] = useState("");
   const [cal, setCal] = useState("");
+  const [protein, setProt] = useState("");
+  const [chydrats, setChydratsCal] = useState("");
+  const [fats, setFats] = useState("");
 
   const addToList = () => {
 
     let tempArr = list;
 
-    let mealArr = list;
+    let mealArr = mealList;
+    mealArr = [];
+    mealArr.length = 0;
 
     mealArr.push(meal);
     mealArr.push(cal);
+    mealArr.push(protein);
+    mealArr.push(chydrats);
+    mealArr.push(fats);
     tempArr.push(mealArr);
+
+    
 
     setList(tempArr);
 
     setValue("");
+    setCal("");
+    setProt("");
+    setChydratsCal("");
+    setFats("");
+
 
   };
 
@@ -55,19 +71,19 @@ function CaloryEntry() {
           <Col md={4}>
             <Form.Group className="m-3" controlId="formGroupProteins">
               <Form.Label>Proteins (grams)</Form.Label>
-              <Form.Control type='number' min={0} placeholder="0" />
+              <Form.Control value={protein} onChange={(h) =>setProt(h.target.value)} type='number' min={0} placeholder="0" />
             </Form.Group>
           </Col>
           <Col md={4}>
             <Form.Group className="m-3" controlId="formGroupCarbohydrates">
               <Form.Label>Carbohydrates (grams)</Form.Label>
-              <Form.Control type='number' min={0} placeholder="0" />
+              <Form.Control value={chydrats} onChange={(g) =>setChydratsCal(g.target.value)} type='number' min={0} placeholder="0" />
             </Form.Group>
           </Col>
           <Col md={4}>
             <Form.Group className="m-3" controlId="formGroupFats">
               <Form.Label>Fats (grams)</Form.Label>
-              <Form.Control type='number' min={0} placeholder="0" />
+              <Form.Control value={fats} onChange={(l) =>setFats(l.target.value)} type='number' min={0} placeholder="0" />
             </Form.Group>
           </Col>
         </Row>
@@ -168,19 +184,19 @@ function CaloryEntry() {
     </Col>
     <Col md={2}>
       <Form.Group className="m-3" controlId="formGroupFats">
-        <Form.Label>Proteins (grams)</Form.Label>
+        <Form.Label>{item[2]}</Form.Label>
         
       </Form.Group>
     </Col>
     <Col md={2}>
       <Form.Group className="m-3" controlId="formGroupFats">
-        <Form.Label>Carbohydrates (grams)</Form.Label>
+        <Form.Label>{item[3]}</Form.Label>
         
       </Form.Group>
     </Col>
     <Col md={2}>
       <Form.Group className="m-3" controlId="formGroupFats">
-        <Form.Label>Fats (grams)</Form.Label>
+        <Form.Label>{item[4]}</Form.Label>
         
       </Form.Group>
     </Col>
@@ -201,21 +217,6 @@ function CaloryEntry() {
 
 </Form>
 </div></div>
-
-
-
-
-
-
-
-
-
-    
-
-      
-
-    
-
 
 
 
