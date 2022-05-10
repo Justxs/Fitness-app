@@ -5,11 +5,11 @@ namespace FitnessApp.Database.DTO
     public class FoodProductDtoGet
     {
         public int Id { get; set; }
-        [Required]
-        [MaxLength(128)]
         public string Name { get; set; }
-        [Required]
         public int Calories100g { get; set; }
+        public float Proteins100g { get; set; }
+        public float Carbohydrates100g { get; set; }
+        public float Fats100g { get; set; }
         public string? ImageUrl { get; set; }
     }
 }

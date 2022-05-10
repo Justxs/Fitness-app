@@ -15,7 +15,15 @@ namespace FitnessApp.Database.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public int Calories100g { get; set; }
+        public float Proteins100g { get; set; }
+
+        [Required]
+        public float Carbohydrates100g { get; set; }
+
+        [Required]
+        public float Fats100g { get; set; }
+        [Required]
+        public float Calories100g { get; set; }
         public string? ImageUrl { get; set; }
 
         public virtual ICollection<AppliesTo> AppliesTos { get; set; }

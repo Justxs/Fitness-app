@@ -29,6 +29,7 @@ namespace FitnessApp.Handlers
         public async Task<FoodProductDtoGet> AddFoodProductAsync(FoodProductDtoForm productForm)
         {
             FoodProduct product = _mapper.Map<FoodProduct>(productForm);
+            product.Calories100g = 4 * product.Proteins100g + 4 * product.Carbohydrates100g + 9 * product.Fats100g;
             await _context.FoodProducts.AddAsync(product);
             await _context.SaveChangesAsync();
 
@@ -42,7 +43,6 @@ namespace FitnessApp.Handlers
             FoodProduct oldProduct = await _context.FoodProducts.FirstOrDefaultAsync(x=>x.Id==id);
             FoodProduct product = _mapper.Map<FoodProduct>(productForm);
             product.Id = id;
-
             _context.Entry(oldProduct).State = EntityState.Detached;
             _context.FoodProducts.Update(product);
             await _context.SaveChangesAsync();

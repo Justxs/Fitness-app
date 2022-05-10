@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen(c =>
 {
+    c.SchemaFilter<SwaggerPlaceholders>();
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Title = "Fitness App API",
@@ -21,6 +22,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddCors(cors =>
 {
     cors.AddPolicy("dev", builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+    cors.AddDefaultPolicy(new Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy());
 });
 
 
@@ -44,6 +46,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseCors("dev");
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
