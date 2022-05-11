@@ -71,5 +71,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "optionalDependencies": {
+    "node-linux-x64": "^17.7.2"
   }
 }
