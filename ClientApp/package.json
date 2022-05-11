@@ -8,6 +8,7 @@
     "jquery": "^3.5.1",
     "merge": "^2.1.1",
     "node": "^17.7.2",
+    "node-linux-x64": "^17.7.2",
     "oidc-client": "^1.11.5",
     "prettier": "^2.6.0",
     "prop-types": "^15.8.1",
