@@ -48,7 +48,10 @@ namespace FitnessApp.Database.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<FoodProduct>().HasData(new FoodProduct(1, "Steak", 15, 65.2f, 4.9f, 364.9f, ""),
+                                                       new FoodProduct(2, "Whole grain bread",6.98f,37.2f,1.16f,209.3f,""),
+                                                       new FoodProduct(3, "Pineapple Pizza",9.4f,30.2f,8.1f,230.1f,""),
+                                                       new FoodProduct(4, "Milk",3.3f,4.9f,2f,50f,""));
         }
     }
 }

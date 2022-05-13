@@ -4,6 +4,7 @@ using FitnessApp.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessApp.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    partial class FitnessAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220509211624_FoodProductComposites")]
+    partial class FoodProductComposites
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,48 +231,6 @@ namespace FitnessApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FoodProducts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Calories100g = 364.9f,
-                            Carbohydrates100g = 65.2f,
-                            Fats100g = 4.9f,
-                            ImageUrl = "",
-                            Name = "Steak",
-                            Proteins100g = 15f
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Calories100g = 209.3f,
-                            Carbohydrates100g = 37.2f,
-                            Fats100g = 1.16f,
-                            ImageUrl = "",
-                            Name = "Whole grain bread",
-                            Proteins100g = 6.98f
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Calories100g = 230.1f,
-                            Carbohydrates100g = 30.2f,
-                            Fats100g = 8.1f,
-                            ImageUrl = "",
-                            Name = "Pineapple Pizza",
-                            Proteins100g = 9.4f
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Calories100g = 50f,
-                            Carbohydrates100g = 4.9f,
-                            Fats100g = 2f,
-                            ImageUrl = "",
-                            Name = "Milk",
-                            Proteins100g = 3.3f
-                        });
                 });
 
             modelBuilder.Entity("FitnessApp.Database.Models.NotPrefer", b =>
