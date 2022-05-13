@@ -4,6 +4,7 @@ using FitnessApp.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessApp.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    partial class FitnessAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220513123905_UsersMockData")]
+    partial class UsersMockData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -431,14 +433,14 @@ namespace FitnessApp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "9fc9e7fa-0ff9-4b31-9b2e-fa9cd5aca66b",
+                            ConcurrencyStamp = "368339fe-0c13-4dd3-8019-8e211acebf9c",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "fae3bf64-bcd6-4d7e-8409-788426db26ef",
+                            ConcurrencyStamp = "c826630a-2ac3-4195-a75f-f95ec1aea5e3",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -558,8 +560,6 @@ namespace FitnessApp.Migrations
                             FirstName = "Admy",
                             LastName = "Nisterson",
                             LockoutEnabled = true,
-                            NormalizedEmail = "ADMIN@ADMIN.COM",
-                            NormalizedUserName = "ADMIN@ADMIN.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAEMHhI7bKcvc+OSmYucr/dU7cRoCREp11U+oibZKHL4MGRUELRPwOVofNqZkOjty5Jw==",
                             PhoneNumberConfirmed = false,
                             RememberPassword = true,
@@ -577,8 +577,6 @@ namespace FitnessApp.Migrations
                             FirstName = "Usy",
                             LastName = "Erson",
                             LockoutEnabled = true,
-                            NormalizedEmail = "USER@EXAMPLE.COM",
-                            NormalizedUserName = "USER@EXAMPLE.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAEMHhI7bKcvc+OSmYucr/dU7cRoCREp11U+oibZKHL4MGRUELRPwOVofNqZkOjty5Jw==",
                             PhoneNumberConfirmed = false,
                             RememberPassword = true,

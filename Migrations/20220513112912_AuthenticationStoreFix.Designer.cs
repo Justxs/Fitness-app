@@ -4,6 +4,7 @@ using FitnessApp.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessApp.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    partial class FitnessAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220513112912_AuthenticationStoreFix")]
+    partial class AuthenticationStoreFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -431,14 +433,14 @@ namespace FitnessApp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "9fc9e7fa-0ff9-4b31-9b2e-fa9cd5aca66b",
+                            ConcurrencyStamp = "0efbfa12-0aba-4480-a2f1-1ca6588f9e2b",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "fae3bf64-bcd6-4d7e-8409-788426db26ef",
+                            ConcurrencyStamp = "07d6e17b-6bd4-40bb-bc9a-b63e549a5369",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -546,46 +548,6 @@ namespace FitnessApp.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "86a67702-8c7f-4880-b807-5de43c2fc135",
-                            Email = "admin@admin.com",
-                            EmailConfirmed = false,
-                            FirstName = "Admy",
-                            LastName = "Nisterson",
-                            LockoutEnabled = true,
-                            NormalizedEmail = "ADMIN@ADMIN.COM",
-                            NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMHhI7bKcvc+OSmYucr/dU7cRoCREp11U+oibZKHL4MGRUELRPwOVofNqZkOjty5Jw==",
-                            PhoneNumberConfirmed = false,
-                            RememberPassword = true,
-                            SecurityStamp = "BOQD6BFFLWPX7GNRBP7ITK5DUCYFVMUF",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@admin.com"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "499c1393-4898-482b-9747-c0c8b8f0abac",
-                            Email = "user@example.com",
-                            EmailConfirmed = false,
-                            FirstName = "Usy",
-                            LastName = "Erson",
-                            LockoutEnabled = true,
-                            NormalizedEmail = "USER@EXAMPLE.COM",
-                            NormalizedUserName = "USER@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMHhI7bKcvc+OSmYucr/dU7cRoCREp11U+oibZKHL4MGRUELRPwOVofNqZkOjty5Jw==",
-                            PhoneNumberConfirmed = false,
-                            RememberPassword = true,
-                            SecurityStamp = "HKUSLCZJDZ6YJEVU32KEIPBXCDQNO3OK",
-                            TwoFactorEnabled = false,
-                            UserName = "user@example.com"
-                        });
                 });
 
             modelBuilder.Entity("FitnessApp.Database.Models.UserData", b =>
@@ -729,18 +691,6 @@ namespace FitnessApp.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            RoleId = 2
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>

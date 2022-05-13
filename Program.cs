@@ -1,6 +1,8 @@
 using AutoMapper;
 using FitnessApp.Configuration;
 using FitnessApp.Database.Models;
+using FitnessApp.Handlers;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,13 +27,18 @@ builder.Services.AddCors(cors =>
     cors.AddDefaultPolicy(new Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy());
 });
 
+builder.Services.AddIdentity<User, Role>()
+    .AddEntityFrameworkStores<FitnessAppDbContext>();
 
+builder.Services.AddTransient<UserManager<User>>();
+builder.Services.AddTransient<RoleManager<Role>>();
+builder.Services.AddTransient<RolesHandler>();
+builder.Services.AddTransient<UsersHandler>();
 
 var mapperConfig = new MapperConfiguration(mc =>
 {
     mc.AddProfile(new AutoMapperConfiguration());
 });
-
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
