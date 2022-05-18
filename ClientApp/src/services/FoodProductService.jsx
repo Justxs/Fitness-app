@@ -5,20 +5,26 @@ export default class FoodProductService {
   fetch = useAPI();
 
   async getFoodProducts() {
-    return this.fetch({ requestType: "get", requestURL: "/FoodProducts" });
+    return this.fetch({
+      requestType: "get",
+      requestController: "/FoodProducts",
+      requestPostfix: "",
+    });
   }
 
   async getFoodProductById(id) {
     return this.fetch({
       requestType: "get",
-      requestURL: `/FoodProducts/${id}`,
+      requestController: "/FoodProducts",
+      requestPostfix: `/${id}`,
     });
   }
 
   async addFoodProduct(product) {
     return this.fetch({
       requestType: "post",
-      requestURL: `/FoodProducts/`,
+      requestController: `/FoodProducts`,
+      requestPostfix: "/",
       requestBody: product,
     });
   }
@@ -26,7 +32,8 @@ export default class FoodProductService {
   async deleteFoodProduct(id) {
     return this.fetch({
       requestType: "delete",
-      requestURL: `/FoodProducts/${id}`,
+      requestController: "/FoodProducts",
+      requestPostfix: `/${id}`,
     });
   }
 }
