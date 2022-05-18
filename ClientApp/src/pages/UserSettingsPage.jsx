@@ -1,76 +1,74 @@
-import '../custom.scss';
+import "../custom.scss";
 import React from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
-
 
 function UserSettingsPage() {
   return (
     <div className="Settings_Page">
-      <div class="bg-light m-5 p-3"> 
-          <Row className='m-3'>
-            <h2 className="mx=2">Account</h2>
-            <Col md={6}>
-              <h6 className="mb=2">Change Email Address</h6>
-              <Form className="mb-3">
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>New Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                  <b className='text-light'>Change</b>
-                </Button>
-              </Form>
-            </Col>
-            <Col md={6}>
-              <h6 className="mb=2">Change Password</h6>
-                <Form className="mb-3">
-                  <Form.Group className="mb-3" controlId="formBasicPassword">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                      <Form.Label>Confirm Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" />
-                      
-                    </Form.Group>
-
-                    <Button variant="primary" type="submit">
-                      <b className='text-light'>Change</b>
-                    </Button>
-              </Form>
-            </Col>
-          </Row>
-          <Row className='m-3'>
-            <Col md={6}>
-              <h2 className="mx=2">Body data</h2>
-              <h6 className="mb=2">Update your weight</h6>
-              <Form className="mb-3">
-                <Form.Group className="mb-3" controlId="formBasicEmail">      
-                  <Form.Control type="text" placeholder="Weight" />                    
-                </Form.Group>   
-                <Button variant="primary" type="submit">
-                  <b className='text-light'>Set</b>
-                </Button>
-                <h6 className="mb=2">Update Your Height</h6>
-                <Form.Group className="mb-3" controlId="formBasicPassword">     
-                  <Form.Control type="text" placeholder="Height" />
-                  </Form.Group>
-                    <Button variant="primary" type="submit">
-                      <b className='text-light'>Set</b>
-                    </Button>
-                  </Form>
-            </Col>
-          
-          <Col md={6} >
-          <h2 className="mx=2">Goals</h2>
-          <h6 className="mb=2">Update your weight goals</h6>
+      <div className="bg-light m-5 p-3">
+        <Row className="m-3">
+          <h2 className="mx=2">Account</h2>
+          <Col md={6}>
+            <h6 className="mb=2">Change Email Address</h6>
             <Form className="mb-3">
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control type="text" placeholder="Weight goal" />  
-              </Form.Group>   
+                <Form.Label>New Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" />
+              </Form.Group>
+
               <Button variant="primary" type="submit">
-                <b className='text-light'>Set</b>
+                <b className="text-light">Change</b>
+              </Button>
+            </Form>
+          </Col>
+          <Col md={6}>
+            <h6 className="mb=2">Change Password</h6>
+            <Form className="mb-3">
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+              </Form.Group>
+
+              <Button variant="primary" type="submit">
+                <b className="text-light">Change</b>
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+        <Row className="m-3">
+          <Col md={6}>
+            <h2 className="mx=2">Body data</h2>
+            <h6 className="mb=2">Update your weight</h6>
+            <Form className="mb-3">
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Control type="text" placeholder="Weight" />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                <b className="text-light">Set</b>
+              </Button>
+              <h6 className="mb=2">Update Your Height</h6>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Control type="text" placeholder="Height" />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                <b className="text-light">Set</b>
+              </Button>
+            </Form>
+          </Col>
+
+          <Col md={6}>
+            <h2 className="mx=2">Goals</h2>
+            <h6 className="mb=2">Update your weight goals</h6>
+            <Form className="mb-3">
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Control type="text" placeholder="Weight goal" />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                <b className="text-light">Set</b>
               </Button>
               <h6 className="mb=2">Update Your Daily Calories Intake Goal</h6>
 
@@ -79,7 +77,7 @@ function UserSettingsPage() {
               </Form.Group>
 
               <Button variant="primary" type="submit">
-                <b className='text-light'>Set</b>
+                <b className="text-light">Set</b>
               </Button>
             </Form>
           </Col>

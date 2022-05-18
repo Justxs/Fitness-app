@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class FoodProductsController : Controller

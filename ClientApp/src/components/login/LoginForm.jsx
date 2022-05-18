@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./LoginForm.css";
 
-function LoginForm({ redirection, loginFunc, isLoading, handleSubmit }) {
+function LoginForm({ loginFunc, isLoading }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberPassword, setRememberPassword] = useState(false);
 
   const onFormChange = (e) => {
     switch (e.target.name) {
@@ -14,12 +14,16 @@ function LoginForm({ redirection, loginFunc, isLoading, handleSubmit }) {
       case "password":
         setPassword(e.target.value);
         break;
-      case "rememberMe":
-        setRememberMe(e.target.checked);
+      case "rememberPassword":
+        setRememberPassword(e.target.checked);
         break;
       default:
         break;
     }
+  };
+
+  const onLogin = () => {
+    loginFunc(email, password, rememberPassword);
   };
 
   return (
@@ -58,23 +62,20 @@ function LoginForm({ redirection, loginFunc, isLoading, handleSubmit }) {
             <input
               type="checkbox"
               className="form-check-input"
-              id={rememberMe}
-              name={rememberMe}
-              checked={rememberMe}
+              id={"rememberPassword"}
+              name={"rememberPassword"}
+              checked={rememberPassword}
               onChange={(e) => onFormChange(e)}
               disabled={isLoading}
               required={false}
             />
-            <label className="formLabel" htmlFor={rememberMe}>
+            <label className="formLabel" htmlFor={"rememberPassword"}>
               {"Remember me"}
             </label>
           </div>
         </div>
       </form>
-      <button
-        className="btn-primary formButton"
-        onClick={() => loginFunc(email, password)}
-      >
+      <button className="btn-primary formButton" onClick={onLogin}>
         Login
       </button>
     </div>
