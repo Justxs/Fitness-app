@@ -57,7 +57,14 @@ namespace FitnessApp.Controllers
         public ActionResult isLoggedIn()
         {
             bool result = _usersHandler.IsLoggedIn(User);
-            return Ok(result);
+            if (result)
+            {
+                return Ok(User.Identity.Name);
+            }
+            else
+            {
+                return Ok(false);
+            }
         }
         [Authorize]
         [HttpPost("logout")]
