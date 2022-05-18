@@ -3,12 +3,14 @@ using FitnessApp.Database;
 using FitnessApp.Database.DTO;
 using FitnessApp.Database.Models;
 using FitnessApp.Handlers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class FoodProductsController : Controller
     {
         private readonly FoodProductsHandler _handler;
