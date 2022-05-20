@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Col, Form, Row, Button } from "react-bootstrap";
 import { useState } from "react";
-import FoodProduct from "../../models/FoodProduct";
-import FoodProductService from "../../services/FoodProductService";
+import FoodRecord from "../../models/FoodRecord";
+import FoodRecordService from "../../services/FoodRecordService";
 
 function CaloryEntry() {
-  const foodProductService = new FoodProductService();
+  const foodRecordService = new FoodRecordService();
 
   const [list, setList] = useState([]);
   const [meal, setValue] = useState("");
@@ -19,13 +19,14 @@ function CaloryEntry() {
   }, [meal, cal, protein, chydrats, fats]);
 
   async function updateList() {
-    let productList = await foodProductService.getFoodProducts();
-    setList(productList);
+    let recordList = await foodRecordService.getFoodRecords();
+    console.log(recordList);
+    setList(recordList);
   }
 
   async function addElement() {
-    let product = new FoodProduct(0, meal, cal, protein, chydrats, fats, "");
-    await foodProductService.addFoodProduct(product);
+    let record = new FoodRecord(0, meal, cal, protein, chydrats, fats, "");
+    await foodRecordService.addFoodRecord(record);
 
     setValue("");
     setCal("");
@@ -38,7 +39,7 @@ function CaloryEntry() {
 
   async function deleteElement(id) {
     console.log(id);
-    await foodProductService.deleteFoodProduct(id);
+    await foodRecordService.deleteFoodRecord(id);
     await updateList();
   }
 
@@ -185,22 +186,22 @@ function CaloryEntry() {
                         className="m-3"
                         controlId="formGroupCarbohydrates"
                       >
-                        <Form.Label>{item.calories100g}</Form.Label>
+                        <Form.Label>{item.calories}</Form.Label>
                       </Form.Group>
                     </Col>
                     <Col md={2}>
                       <Form.Group className="m-3" controlId="formGroupFats">
-                        <Form.Label>{item.proteins100g}</Form.Label>
+                        <Form.Label>{item.proteins}</Form.Label>
                       </Form.Group>
                     </Col>
                     <Col md={2}>
                       <Form.Group className="m-3" controlId="formGroupFats">
-                        <Form.Label>{item.carbohydrates100g}</Form.Label>
+                        <Form.Label>{item.carbohydrates}</Form.Label>
                       </Form.Group>
                     </Col>
                     <Col md={2}>
                       <Form.Group className="m-3" controlId="formGroupFats">
-                        <Form.Label>{item.fats100g}</Form.Label>
+                        <Form.Label>{item.fats}</Form.Label>
                       </Form.Group>
                     </Col>
                     <Col md={2}>
