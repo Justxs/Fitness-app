@@ -23,8 +23,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddCors(cors =>
 {
-    cors.AddPolicy("dev", builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-    cors.AddDefaultPolicy(new Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy());
+    cors.AddPolicy("dev", builder => builder
+        .WithOrigins("https://localhost:44425")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials());
 });
 
 builder.Services.AddIdentity<User, Role>()

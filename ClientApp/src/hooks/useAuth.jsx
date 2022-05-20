@@ -1,76 +1,93 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import propTypes from "prop-types";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const DUMMY_ROLES = {
-  ADMIN: "Administrator",
-  USER: "User",
-};
-
-const DUMMY_USER = {
-  email: "dummy.user@domain.com",
-  password: "p455w0rd",
-  role: DUMMY_ROLES.ADMIN,
-};
-
-const AuthContext = createContext(null);
-
-export const useAuth = () => useContext(AuthContext);
+const AuthContext = createContext();
 
 AuthProvider.propTypes = {
   children: propTypes.node.isRequired,
 };
 
 export function AuthProvider({ children }) {
-  const auth = useProvideAuth();
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
-}
-
-const useProvideAuth = () => {
-  const setLocalStorage = (value) => localStorage.setItem("isLoggedIn", value);
-  const getLocalStorage = () => localStorage.getItem("isLoggedIn") === "true";
-  const removeLocalStorage = () => localStorage.removeItem("isLoggedIn");
-
-  const [user, setUser] = useState(null);
-  const [isLoggedIn, setLoginStatus] = useState(getLocalStorage);
-
-  const setAuth = (state) => {
-    setUser(DUMMY_USER);
-    if (!state) setUser(null);
-    setLoginStatus(state);
-    setLocalStorage(state);
+  const api = axios.create({
+    baseURL: "https://localhost:44325/api/Users/",
+  });
+  const headers = {
+    withCredentials: true,
   };
+
+  const [username, setUsername] = useState();
+  const [errors, setErrors] = useState();
+  const [loading, setLoading] = useState(false);
+  const [loadingInitial, setLoadingInitial] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    //TO DO: replace with data fetch from server
-    const localAuthState = getLocalStorage();
-    setAuth(localAuthState);
+    api
+      .post("isloggedIn", null, headers)
+      .then((response) => {
+        if (response.data !== false) {
+          setUsername(response.data);
+        }
+      })
+      .catch((errors) => {
+        setErrors(errors);
+        console.log(errors);
+        setUsername(undefined);
+      })
+      .finally(() => setLoadingInitial(false));
   }, []);
 
-  const signIn = (email, password) =>
-    new Promise((resolve, reject) => {
-      if (email !== DUMMY_USER.email || password !== DUMMY_USER.password) {
-        //reject
-      } else {
-        setAuth(true);
-        resolve("Logged in successfully");
-      }
-    });
+  async function signIn(username, password, rememberPassword) {
+    setLoading(true);
 
-  const signOut = () =>
-    new Promise((resolve, reject) => {
-      if (!isLoggedIn || user === null)
-        reject(new Error("You are already logged out"));
+    api
+      .post(
+        "login",
+        {
+          username: username,
+          password: password,
+          rememberPassword: rememberPassword,
+        },
+        headers
+      )
+      .then((response) => {
+        setUsername(response);
+      })
+      .catch((errors) => {
+        setErrors(errors.response.data);
+      })
+      .finally(() => setLoading(false));
+  }
 
-      removeLocalStorage();
-      setAuth(false);
-      resolve("Logged out successfully");
-    });
+  async function signOut() {
+    api
+      .post("logout", null, headers)
+      .then(() => setUsername(undefined))
+      .then(() => navigate("login"));
+  }
 
-  return {
-    signIn,
-    signOut,
-    isLoggedIn,
-    user,
-  };
-};
+  const memoedValue = useMemo(
+    () => ({
+      username,
+      loading,
+      errors,
+      signIn,
+      signOut,
+    }),
+    [username, loading, errors]
+  );
+
+  return (
+    <AuthContext.Provider value={memoedValue}>
+      {!loadingInitial && children}
+    </AuthContext.Provider>
+  );
+}
+
+export default function useAuth() {
+  return useContext(AuthContext);
+}

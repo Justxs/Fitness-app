@@ -20,7 +20,6 @@ function CaloryEntry() {
 
   async function updateList() {
     let productList = await foodProductService.getFoodProducts();
-    console.log(productList);
     setList(productList);
   }
 
@@ -171,9 +170,9 @@ function CaloryEntry() {
 </ul> */}
 
           <ul>
-            {list.length > 0 &&
+            {list?.length > 0 &&
               list.map((item, i) => (
-                <li>
+                <li key={item.id}>
                   {" "}
                   <Row>
                     <Col md={2}>

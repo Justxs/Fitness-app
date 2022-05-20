@@ -3,15 +3,28 @@
 import axios from "axios";
 
 export default function useAPI() {
-  const baseUrl = "https://localhost:44325";
+  const headers = {
+    withCredentials: true,
+  };
 
-  async function fetch({ requestType, requestBody, requestURL }) {
+  async function fetch({
+    requestType,
+    requestBody,
+    requestController,
+    requestPostfix,
+  }) {
+    const api = axios.create({
+      baseURL: "https://localhost:44325/api" + requestController,
+      withCredentials: true,
+    });
     let data;
     try {
-      const response = await axios[requestType](
-        baseUrl + requestURL,
-        requestBody
-      );
+      let response;
+      if (requestType === "get") {
+        response = await api[requestType](requestPostfix);
+      } else {
+        response = await api[requestType](requestPostfix, requestBody);
+      }
       data = response.data ? response.data : true;
     } catch (err) {
       //TODO: implement error handling

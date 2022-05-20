@@ -1,11 +1,12 @@
 import '../src/custom.scss';
 import AppRoutes from './components/routing/AppRoutes';
-import { useAuth } from './hooks/useAuth';
+import useAuth  from './hooks/useAuth';
 
 function App() {
-  const { isLoggedIn } = useAuth();
+  const { username } = useAuth();
+  //console.log(username);
   return (
-      <AppRoutes isLoggedIn={isLoggedIn}/>
+      <AppRoutes isLoggedIn={ username !== undefined }/>
   );
 }
 

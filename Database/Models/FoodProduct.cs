@@ -6,6 +6,10 @@ namespace FitnessApp.Database.Models
 {
     public partial class FoodProduct: ID
     {
+        public FoodProduct()
+        {
+
+        }
         public FoodProduct(int id, string name, float proteins100g, float carbohydrates100g, float fats100g, float calories100g, string imageUrl = "")
         {
             AppliesTos = new HashSet<AppliesTo>();
