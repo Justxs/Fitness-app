@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FitnessApp.Database.DTO;
+using FitnessApp.Database.DTO.FoodRecord;
 using FitnessApp.Database.Models;
 using FitnessApp.Handlers;
 using Microsoft.AspNetCore.Authorization;
@@ -39,6 +40,18 @@ namespace FitnessApp.Controllers
             List<FoodRecordDtoGet> result = await _handler.GetUserFoodRecordsAsync(userId);
             return Ok(result);
         }
+
+        [HttpGet("daily")]
+        public async Task<IActionResult> GetUserDailyStatistics()
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            DateTime now = DateTime.Now;
+            DateTime start = new DateTime(now.Year, now.Month, now.Day);
+            DateTime end = start.AddDays(1);
+            FoodRecordDtoAggregate result = await _handler.GetFoodStatisticsByTimeInterval(start, end, userId);
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserFoodRecord(int id)
         {

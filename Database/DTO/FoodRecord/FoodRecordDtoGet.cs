@@ -13,5 +13,6 @@ namespace FitnessApp.Database.DTO
         public float Fats { get; set; }
         public string? ImageUrl { get; set; }
         public UserDtoGet User { get; set; }
+        public DateTime Date { get; set; }
     }
 }

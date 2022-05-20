@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FitnessApp.Database.DTO;
+using FitnessApp.Database.DTO.FoodRecord;
 using FitnessApp.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,64 +17,71 @@ namespace FitnessApp.Handlers
         }
         public async Task<List<FoodRecordDtoGet>> GetAllFoodRecordsAsync()
         {
-            List<FoodRecord> products = await _context.FoodRecords.ToListAsync();
-            List<FoodRecordDtoGet> result = _mapper.Map<List<FoodRecordDtoGet>>(products);
+            List<FoodRecord> records = await _context.FoodRecords.ToListAsync();
+            List<FoodRecordDtoGet> result = _mapper.Map<List<FoodRecordDtoGet>>(records);
             return result;
         }
         public async Task<FoodRecordDtoGet> GetFoodRecordAsync(int id)
         {
-            FoodRecord products = await _context.FoodRecords.FirstOrDefaultAsync(x=>x.Id == id);
-            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(products);
+            FoodRecord records = await _context.FoodRecords.FirstOrDefaultAsync(x=>x.Id == id);
+            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(records);
+            return result;
+        }
+        public async Task<FoodRecordDtoAggregate> GetFoodStatisticsByTimeInterval(DateTime start, DateTime end, int userId)
+        {
+            List<FoodRecord> records = await _context.FoodRecords.Where(x => x.UserId == userId && x.Date >= start && x.Date < end).Include(x => x.User).ToListAsync();
+            FoodRecordDtoAggregate result = _mapper.Map<List<FoodRecord>, FoodRecordDtoAggregate>(records);
             return result;
         }
         public async Task<List<FoodRecordDtoGet>> GetUserFoodRecordsAsync(int userId)
         {
-            List<FoodRecord> products = await _context.FoodRecords.Where(x => x.UserId == userId).Include(x=>x.User).ToListAsync();
-            List<FoodRecordDtoGet> result = _mapper.Map<List<FoodRecordDtoGet>>(products);
+            List<FoodRecord> records = await _context.FoodRecords.Where(x => x.UserId == userId).Include(x=>x.User).ToListAsync();
+            List<FoodRecordDtoGet> result = _mapper.Map<List<FoodRecordDtoGet>>(records);
             return result;
         }
         public async Task<FoodRecordDtoGet> GetUserFoodRecordAsync(int userId, int id)
         {
-            FoodRecord products = await _context.FoodRecords.Where(x => x.UserId == userId).Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
-            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(products);
+            FoodRecord records = await _context.FoodRecords.Where(x => x.UserId == userId).Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
+            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(records);
             return result;
         }
-        public async Task<FoodRecordDtoGet> AddFoodRecordAsync(FoodRecordDtoForm productForm, int userId)
+        public async Task<FoodRecordDtoGet> AddFoodRecordAsync(FoodRecordDtoForm recordForm, int userId)
         {
-            FoodRecord product = _mapper.Map<FoodRecord>(productForm);
-            product.UserId = userId;
-            product.User = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
-            product =  (await _context.FoodRecords.AddAsync(product)).Entity;
+            FoodRecord record = _mapper.Map<FoodRecord>(recordForm);
+            record.UserId = userId;
+            record.User = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            record.Date = DateTime.Now;
+            record =  (await _context.FoodRecords.AddAsync(record)).Entity;
             await _context.SaveChangesAsync();
 
-            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(product);
+            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(record);
             return result;
         }
-        public async Task<FoodRecordDtoGet> UpdateFoodRecordAsync(FoodRecordDtoForm productForm, int id, int userId)
+        public async Task<FoodRecordDtoGet> UpdateFoodRecordAsync(FoodRecordDtoForm recordForm, int id, int userId)
         {
-            FoodRecord oldProduct = await _context.FoodRecords.FirstOrDefaultAsync(x=>x.Id==id && x.UserId == userId);
-            FoodRecord product = _mapper.Map<FoodRecord>(productForm);
-            product.Id = id;
-            product.UserId = oldProduct.UserId;
-            product.User = oldProduct.User;
-            _context.Entry(oldProduct).State = EntityState.Detached;
-            product = (_context.FoodRecords.Update(product)).Entity;
+            FoodRecord oldrecord = await _context.FoodRecords.FirstOrDefaultAsync(x=>x.Id==id && x.UserId == userId);
+            FoodRecord record = _mapper.Map<FoodRecord>(recordForm);
+            record.Id = id;
+            record.UserId = oldrecord.UserId;
+            record.User = oldrecord.User;
+            _context.Entry(oldrecord).State = EntityState.Detached;
+            record = (_context.FoodRecords.Update(record)).Entity;
             await _context.SaveChangesAsync();
-            _context.Entry(product).State = EntityState.Modified;
+            _context.Entry(record).State = EntityState.Modified;
 
-            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(product);
+            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(record);
             return result;
         }
 
         public async Task<FoodRecordDtoGet> RemoveFoodRecordAsync(int id, int userId)
         {
-            FoodRecord product = await _context.FoodRecords.FirstOrDefaultAsync(x=>x.Id==id && x.UserId == userId);
-            _context.Entry(product).State = EntityState.Detached;
-            _context.FoodRecords.Remove(product);
+            FoodRecord record = await _context.FoodRecords.FirstOrDefaultAsync(x=>x.Id==id && x.UserId == userId);
+            _context.Entry(record).State = EntityState.Detached;
+            _context.FoodRecords.Remove(record);
             await _context.SaveChangesAsync();
-            _context.Entry(product).State = EntityState.Deleted;
+            _context.Entry(record).State = EntityState.Deleted;
 
-            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(product);
+            FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(record);
             return result;
         }
 
