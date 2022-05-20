@@ -4,6 +4,7 @@ using FitnessApp.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessApp.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    partial class FitnessAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220520163255_DatabaseCleanup")]
+    partial class DatabaseCleanup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace FitnessApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("FitnessApp.Database.Models.FoodRecord", b =>
+            modelBuilder.Entity("FitnessApp.Database.Models.FoodProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,13 +32,13 @@ namespace FitnessApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<float>("Calories")
+                    b.Property<float>("Calories100g")
                         .HasColumnType("real");
 
-                    b.Property<float>("Carbohydrates")
+                    b.Property<float>("Carbohydrates100g")
                         .HasColumnType("real");
 
-                    b.Property<float>("Fats")
+                    b.Property<float>("Fats100g")
                         .HasColumnType("real");
 
                     b.Property<string>("ImageUrl")
@@ -46,62 +48,53 @@ namespace FitnessApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Proteins")
+                    b.Property<float>("Proteins100g")
                         .HasColumnType("real");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("FoodRecords");
+                    b.ToTable("FoodProducts");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Calories = 364.9f,
-                            Carbohydrates = 65.2f,
-                            Fats = 4.9f,
+                            Calories100g = 364.9f,
+                            Carbohydrates100g = 65.2f,
+                            Fats100g = 4.9f,
                             ImageUrl = "",
                             Name = "Steak",
-                            Proteins = 15f,
-                            UserId = 2
+                            Proteins100g = 15f
                         },
                         new
                         {
                             Id = 2,
-                            Calories = 209.3f,
-                            Carbohydrates = 37.2f,
-                            Fats = 1.16f,
+                            Calories100g = 209.3f,
+                            Carbohydrates100g = 37.2f,
+                            Fats100g = 1.16f,
                             ImageUrl = "",
                             Name = "Whole grain bread",
-                            Proteins = 6.98f,
-                            UserId = 2
+                            Proteins100g = 6.98f
                         },
                         new
                         {
                             Id = 3,
-                            Calories = 230.1f,
-                            Carbohydrates = 30.2f,
-                            Fats = 8.1f,
+                            Calories100g = 230.1f,
+                            Carbohydrates100g = 30.2f,
+                            Fats100g = 8.1f,
                             ImageUrl = "",
                             Name = "Pineapple Pizza",
-                            Proteins = 9.4f,
-                            UserId = 2
+                            Proteins100g = 9.4f
                         },
                         new
                         {
                             Id = 4,
-                            Calories = 50f,
-                            Carbohydrates = 4.9f,
-                            Fats = 2f,
+                            Calories100g = 50f,
+                            Carbohydrates100g = 4.9f,
+                            Fats100g = 2f,
                             ImageUrl = "",
                             Name = "Milk",
-                            Proteins = 3.3f,
-                            UserId = 2
+                            Proteins100g = 3.3f
                         });
                 });
 
@@ -168,14 +161,14 @@ namespace FitnessApp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "659eb4fa-ba38-47c6-a4fd-95a791e326cb",
+                            ConcurrencyStamp = "bed7f064-6c0c-4893-8a36-c203a4862cb9",
                             Name = "admin",
-                            NormalizedName = "Admin"
+                            NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "42b8cb96-f1ff-4c51-ba54-d80d036bb2e1",
+                            ConcurrencyStamp = "a005db81-8177-454b-be78-7e6216f1660c",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -264,10 +257,10 @@ namespace FitnessApp.Migrations
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "86a67702-8c7f-4880-b807-5de43c2fc135",
                             Email = "admin@admin.com",
-                            EmailConfirmed = true,
+                            EmailConfirmed = false,
                             FirstName = "Admy",
                             LastName = "Nisterson",
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAEMHhI7bKcvc+OSmYucr/dU7cRoCREp11U+oibZKHL4MGRUELRPwOVofNqZkOjty5Jw==",
@@ -281,18 +274,18 @@ namespace FitnessApp.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "86a67702-8c7f-4880-b807-5de43c2fc135",
+                            ConcurrencyStamp = "499c1393-4898-482b-9747-c0c8b8f0abac",
                             Email = "user@example.com",
-                            EmailConfirmed = true,
+                            EmailConfirmed = false,
                             FirstName = "Usy",
                             LastName = "Erson",
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             NormalizedEmail = "USER@EXAMPLE.COM",
                             NormalizedUserName = "USER@EXAMPLE.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAEMHhI7bKcvc+OSmYucr/dU7cRoCREp11U+oibZKHL4MGRUELRPwOVofNqZkOjty5Jw==",
                             PhoneNumberConfirmed = false,
                             RememberPassword = true,
-                            SecurityStamp = "BOQD6BFFLWPX7GNRBP7ITK5DUCYFVMUF",
+                            SecurityStamp = "HKUSLCZJDZ6YJEVU32KEIPBXCDQNO3OK",
                             TwoFactorEnabled = false,
                             UserName = "user@example.com"
                         });
@@ -449,17 +442,6 @@ namespace FitnessApp.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("FitnessApp.Database.Models.FoodRecord", b =>
-                {
-                    b.HasOne("FitnessApp.Database.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FitnessApp.Database.Models.PhysicalStateRecord", b =>

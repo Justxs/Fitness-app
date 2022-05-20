@@ -15,6 +15,7 @@ namespace FitnessApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly UsersHandler _usersHandler;
@@ -66,7 +67,6 @@ namespace FitnessApp.Controllers
                 return Ok(false);
             }
         }
-        [Authorize]
         [HttpPost("logout")]
         public async Task<ActionResult> Logout()
         {
@@ -96,7 +96,6 @@ namespace FitnessApp.Controllers
                 return BadRequest(result);
             }
         }
-        [Authorize(Roles = "user,admin")]
         [HttpPut("update")]
         public async Task<ActionResult> Update([FromBody] UserDtoUpdate updateModel)
         {

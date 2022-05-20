@@ -7,10 +7,6 @@ namespace FitnessApp.Database.Models
 {
     public partial class WeightLossGoal: ID
     {
-        public WeightLossGoal()
-        {
-            Diets = new HashSet<Diet>();
-        }
         [Required]
         public DateTime? StartDate { get; set; }
         [Required]
@@ -19,13 +15,9 @@ namespace FitnessApp.Database.Models
         public DateTime? EndDate { get; set; }
         [Required]
         public double? EndWeight { get; set; }
-        [Required]
-        public int? Calories { get; set; }
 
-        [ForeignKey(nameof(ID_UserData_WeightLossGoal))]
-        public virtual UserData UserDataObj { get; set; } = null!;
-        public int ID_UserData_WeightLossGoal { get; set; }
-
-        public virtual ICollection<Diet> Diets { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public virtual User User { get; set; } = null!;
+        public int UserId { get; set; }
     }
 }
