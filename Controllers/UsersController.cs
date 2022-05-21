@@ -5,6 +5,7 @@
 //2FA
 //Login with google, etc.
 using FitnessApp.Database.DTO;
+using FitnessApp.Database.DTO.User;
 using FitnessApp.Database.Models;
 using FitnessApp.Handlers;
 using Microsoft.AspNetCore.Authorization;
@@ -15,6 +16,7 @@ namespace FitnessApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly UsersHandler _usersHandler;
@@ -23,6 +25,7 @@ namespace FitnessApp.Controllers
             _usersHandler = usersHandler;
         }
         [HttpPost("addUser")]
+        [AllowAnonymous]
         public async Task<ActionResult> AddRegularUser([FromBody] UserDtoRegister registerModel)
         {
             string result;
@@ -37,6 +40,7 @@ namespace FitnessApp.Controllers
                 return BadRequest(result);
             }
         }
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] UserDtoLogin loginCredentials)
         {
@@ -53,6 +57,7 @@ namespace FitnessApp.Controllers
             }
             
         }
+        [AllowAnonymous]
         [HttpPost("isLoggedIn")]
         public ActionResult isLoggedIn()
         {
@@ -66,7 +71,6 @@ namespace FitnessApp.Controllers
                 return Ok(false);
             }
         }
-        [Authorize]
         [HttpPost("logout")]
         public async Task<ActionResult> Logout()
         {
@@ -96,7 +100,6 @@ namespace FitnessApp.Controllers
                 return BadRequest(result);
             }
         }
-        [Authorize(Roles = "user,admin")]
         [HttpPut("update")]
         public async Task<ActionResult> Update([FromBody] UserDtoUpdate updateModel)
         {

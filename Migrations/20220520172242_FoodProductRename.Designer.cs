@@ -4,6 +4,7 @@ using FitnessApp.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessApp.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    partial class FitnessAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220520172242_FoodProductRename")]
+    partial class FoodProductRename
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,16 +32,13 @@ namespace FitnessApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<float>("Calories")
+                    b.Property<float>("Calories100g")
                         .HasColumnType("real");
 
-                    b.Property<float>("Carbohydrates")
+                    b.Property<float>("Carbohydrates100g")
                         .HasColumnType("real");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("Fats")
+                    b.Property<float>("Fats100g")
                         .HasColumnType("real");
 
                     b.Property<string>("ImageUrl")
@@ -49,7 +48,7 @@ namespace FitnessApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Proteins")
+                    b.Property<float>("Proteins100g")
                         .HasColumnType("real");
 
                     b.Property<int>("UserId")
@@ -65,49 +64,45 @@ namespace FitnessApp.Migrations
                         new
                         {
                             Id = 1,
-                            Calories = 364.9f,
-                            Carbohydrates = 65.2f,
-                            Date = new DateTime(2022, 5, 20, 21, 14, 18, 802, DateTimeKind.Local).AddTicks(8005),
-                            Fats = 4.9f,
+                            Calories100g = 364.9f,
+                            Carbohydrates100g = 65.2f,
+                            Fats100g = 4.9f,
                             ImageUrl = "",
                             Name = "Steak",
-                            Proteins = 15f,
+                            Proteins100g = 15f,
                             UserId = 2
                         },
                         new
                         {
                             Id = 2,
-                            Calories = 209.3f,
-                            Carbohydrates = 37.2f,
-                            Date = new DateTime(2022, 5, 20, 21, 14, 18, 802, DateTimeKind.Local).AddTicks(8049),
-                            Fats = 1.16f,
+                            Calories100g = 209.3f,
+                            Carbohydrates100g = 37.2f,
+                            Fats100g = 1.16f,
                             ImageUrl = "",
                             Name = "Whole grain bread",
-                            Proteins = 6.98f,
+                            Proteins100g = 6.98f,
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Calories = 230.1f,
-                            Carbohydrates = 30.2f,
-                            Date = new DateTime(2022, 5, 19, 4, 21, 0, 0, DateTimeKind.Unspecified),
-                            Fats = 8.1f,
+                            Calories100g = 230.1f,
+                            Carbohydrates100g = 30.2f,
+                            Fats100g = 8.1f,
                             ImageUrl = "",
                             Name = "Pineapple Pizza",
-                            Proteins = 9.4f,
+                            Proteins100g = 9.4f,
                             UserId = 2
                         },
                         new
                         {
                             Id = 4,
-                            Calories = 50f,
-                            Carbohydrates = 4.9f,
-                            Date = new DateTime(2022, 5, 20, 21, 14, 18, 802, DateTimeKind.Local).AddTicks(8054),
-                            Fats = 2f,
+                            Calories100g = 50f,
+                            Carbohydrates100g = 4.9f,
+                            Fats100g = 2f,
                             ImageUrl = "",
                             Name = "Milk",
-                            Proteins = 3.3f,
+                            Proteins100g = 3.3f,
                             UserId = 2
                         });
                 });
@@ -175,14 +170,14 @@ namespace FitnessApp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "2b3d9a3f-12d0-434d-bd90-6428420d3f3d",
+                            ConcurrencyStamp = "40575b46-861d-4a84-b793-b4f222d5cc82",
                             Name = "admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "ef6d7a4c-562e-4491-b2af-f536967f0c90",
+                            ConcurrencyStamp = "fd35a1c6-e55a-4918-9e41-7902685f161c",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -312,6 +307,10 @@ namespace FitnessApp.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("Calories")
+                        .IsRequired()
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("EndDate")
                         .IsRequired()

@@ -4,6 +4,7 @@ using FitnessApp.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessApp.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    partial class FitnessAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220520180330_FoodRecordDate")]
+    partial class FoodRecordDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,7 +69,7 @@ namespace FitnessApp.Migrations
                             Id = 1,
                             Calories = 364.9f,
                             Carbohydrates = 65.2f,
-                            Date = new DateTime(2022, 5, 20, 21, 14, 18, 802, DateTimeKind.Local).AddTicks(8005),
+                            Date = new DateTime(2022, 5, 20, 21, 3, 30, 374, DateTimeKind.Local).AddTicks(7681),
                             Fats = 4.9f,
                             ImageUrl = "",
                             Name = "Steak",
@@ -79,7 +81,7 @@ namespace FitnessApp.Migrations
                             Id = 2,
                             Calories = 209.3f,
                             Carbohydrates = 37.2f,
-                            Date = new DateTime(2022, 5, 20, 21, 14, 18, 802, DateTimeKind.Local).AddTicks(8049),
+                            Date = new DateTime(2022, 5, 20, 21, 3, 30, 374, DateTimeKind.Local).AddTicks(7732),
                             Fats = 1.16f,
                             ImageUrl = "",
                             Name = "Whole grain bread",
@@ -103,7 +105,7 @@ namespace FitnessApp.Migrations
                             Id = 4,
                             Calories = 50f,
                             Carbohydrates = 4.9f,
-                            Date = new DateTime(2022, 5, 20, 21, 14, 18, 802, DateTimeKind.Local).AddTicks(8054),
+                            Date = new DateTime(2022, 5, 20, 21, 3, 30, 374, DateTimeKind.Local).AddTicks(7739),
                             Fats = 2f,
                             ImageUrl = "",
                             Name = "Milk",
@@ -175,14 +177,14 @@ namespace FitnessApp.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "2b3d9a3f-12d0-434d-bd90-6428420d3f3d",
+                            ConcurrencyStamp = "1a38f500-2260-48d6-8bb4-2b981152e115",
                             Name = "admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "ef6d7a4c-562e-4491-b2af-f536967f0c90",
+                            ConcurrencyStamp = "3d8d5ca5-7a4e-4850-9494-0c1643f0aab2",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -269,7 +271,7 @@ namespace FitnessApp.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "86a67702-8c7f-4880-b807-5de43c2fc135",
+                            ConcurrencyStamp = "89119696-70ec-4c1b-89e4-19007e420d14",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admy",
@@ -280,7 +282,6 @@ namespace FitnessApp.Migrations
                             PasswordHash = "AQAAAAEAACcQAAAAEMHhI7bKcvc+OSmYucr/dU7cRoCREp11U+oibZKHL4MGRUELRPwOVofNqZkOjty5Jw==",
                             PhoneNumberConfirmed = false,
                             RememberPassword = true,
-                            SecurityStamp = "BOQD6BFFLWPX7GNRBP7ITK5DUCYFVMUF",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -288,7 +289,7 @@ namespace FitnessApp.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "86a67702-8c7f-4880-b807-5de43c2fc135",
+                            ConcurrencyStamp = "49c95636-7934-47d7-b2bd-ed1d7c17aef3",
                             Email = "user@example.com",
                             EmailConfirmed = true,
                             FirstName = "Usy",
@@ -299,7 +300,6 @@ namespace FitnessApp.Migrations
                             PasswordHash = "AQAAAAEAACcQAAAAEMHhI7bKcvc+OSmYucr/dU7cRoCREp11U+oibZKHL4MGRUELRPwOVofNqZkOjty5Jw==",
                             PhoneNumberConfirmed = false,
                             RememberPassword = true,
-                            SecurityStamp = "BOQD6BFFLWPX7GNRBP7ITK5DUCYFVMUF",
                             TwoFactorEnabled = false,
                             UserName = "user@example.com"
                         });
