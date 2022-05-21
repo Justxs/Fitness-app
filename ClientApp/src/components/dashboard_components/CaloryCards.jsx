@@ -15,6 +15,7 @@ function CaloryCards() {
   async function getDataFromServer() {
     let statistics = await foodRecordService.getFoodStatistics();
     setFoodStatistics(statistics);
+    console.log(statistics);
   }
 
   useEffect(() => {

@@ -17,25 +17,29 @@ namespace FitnessApp.Handlers
         }
         public async Task<List<FoodRecordDtoGet>> GetAllFoodRecordsAsync()
         {
-            List<FoodRecord> records = await _context.FoodRecords.ToListAsync();
+            List<FoodRecord> records = await _context.FoodRecords.Include(x=>x.User).ToListAsync();
             List<FoodRecordDtoGet> result = _mapper.Map<List<FoodRecordDtoGet>>(records);
             return result;
         }
         public async Task<FoodRecordDtoGet> GetFoodRecordAsync(int id)
         {
-            FoodRecord records = await _context.FoodRecords.FirstOrDefaultAsync(x=>x.Id == id);
+            FoodRecord records = await _context.FoodRecords.Include(x => x.User).FirstOrDefaultAsync(x=>x.Id == id);
             FoodRecordDtoGet result = _mapper.Map<FoodRecordDtoGet>(records);
             return result;
         }
         public async Task<FoodRecordDtoAggregate> GetFoodStatisticsByTimeInterval(DateTime start, DateTime end, int userId)
         {
-            List<FoodRecord> records = await _context.FoodRecords.Where(x => x.UserId == userId && x.Date >= start && x.Date < end).Include(x => x.User).ToListAsync();
+            List<FoodRecord> records = await _context.FoodRecords.Include(x => x.User).Where(x => x.UserId == userId && x.Date >= start && x.Date < end).ToListAsync();
+            if(records.Count == 0)
+            {
+                return null;
+            }
             FoodRecordDtoAggregate result = _mapper.Map<List<FoodRecord>, FoodRecordDtoAggregate>(records);
             return result;
         }
         public async Task<List<FoodRecordDtoGet>> GetUserFoodRecordsAsync(int userId)
         {
-            List<FoodRecord> records = await _context.FoodRecords.Where(x => x.UserId == userId).Include(x=>x.User).ToListAsync();
+            List<FoodRecord> records = await _context.FoodRecords.Include(x => x.User).Where(x => x.UserId == userId).ToListAsync();
             List<FoodRecordDtoGet> result = _mapper.Map<List<FoodRecordDtoGet>>(records);
             return result;
         }

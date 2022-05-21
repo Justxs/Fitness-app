@@ -14,7 +14,7 @@ namespace FitnessApp.Configuration
                 schema.Example = new OpenApiObject()
                 {
                     ["name"] = new OpenApiString("Whole Grain Bread"),
-                    ["colories"] = new OpenApiFloat(209.3f),
+                    ["calories"] = new OpenApiFloat(209.3f),
                     ["proteins"] = new OpenApiFloat(12.0f),
                     ["carbohydrates"] = new OpenApiFloat(41.4f),
                     ["fats"] = new OpenApiFloat(3.3f),
