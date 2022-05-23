@@ -1,7 +1,7 @@
 import "../custom.scss";
 import CaloryCards from "../components/dashboard_components/CaloryCards";
 import WeightGraph from "../components/dashboard_components/WeightGraph";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 function DashboardPage() {
   return (
@@ -9,7 +9,7 @@ function DashboardPage() {
       <Row>
         <CaloryCards />
       </Row>
-      <Row className="container-fluid">
+      <Row className="container-fluid m-2">
         <WeightGraph />
       </Row>
       
