@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from "react";
-import { Col, Form, Row, Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 
 function EatenFoodList() {
   const [list, setList] = useState([]);
