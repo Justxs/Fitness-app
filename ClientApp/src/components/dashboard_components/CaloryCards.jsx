@@ -38,7 +38,7 @@ function CaloryCards() {
 
   return (
     <div className="Calory_cards">
-      <CardGroup className="m-2 md-2">
+      <CardGroup className="md-2">
         <Card className="bg-light m-4 p-3">
           <Card.Body>
             <Row>

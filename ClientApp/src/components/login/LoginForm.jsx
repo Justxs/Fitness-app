@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 import "./LoginForm.css";
 
 function LoginForm({ loginFunc, isLoading }) {
@@ -75,9 +76,9 @@ function LoginForm({ loginFunc, isLoading }) {
           </div>
         </div>
       </form>
-      <button className="btn-primary formButton" onClick={onLogin}>
-        Login
-      </button>
+      <Button className="text-light btn-primary formButton" onClick={onLogin}>
+        <b>Login</b>
+      </Button>
     </div>
   );
 }

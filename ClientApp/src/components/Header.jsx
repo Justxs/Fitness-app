@@ -48,7 +48,7 @@ function Header({isLoggedIn}) {
               >
                 <b>Settings</b>
               </Nav.Link>
-              <Button className="text-light" variant="primary" onClick={() => signOut()}>
+              <Button className="text-light m-2" variant="primary" onClick={() => signOut()}>
                 <b>Logout</b>
               </Button>
             </Nav>
