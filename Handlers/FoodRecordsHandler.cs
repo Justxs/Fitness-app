@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FitnessApp.Database.DTO;
 using FitnessApp.Database.DTO.FoodRecord;
+using FitnessApp.Database.DTO.User;
 using FitnessApp.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,7 +33,7 @@ namespace FitnessApp.Handlers
             List<FoodRecord> records = await _context.FoodRecords.Include(x => x.User).Where(x => x.UserId == userId && x.Date >= start && x.Date < end).ToListAsync();
             if(records.Count == 0)
             {
-                return null;
+                return new FoodRecordDtoAggregate(0, 0, 0, 0, _mapper.Map<UserDtoGet>(await _context.Users.FirstOrDefaultAsync(x => x.Id == userId)));
             }
             FoodRecordDtoAggregate result = _mapper.Map<List<FoodRecord>, FoodRecordDtoAggregate>(records);
             return result;
