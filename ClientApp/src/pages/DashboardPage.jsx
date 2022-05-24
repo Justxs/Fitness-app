@@ -1,6 +1,7 @@
 import "../custom.scss";
 import CaloryCards from "../components/dashboard_components/CaloryCards";
 import WeightGraph from "../components/dashboard_components/WeightGraph";
+import CalorieGraph from "../components/dashboard_components/CalorieGraph";
 import { Col, Row } from "react-bootstrap";
 import CaloriesRecomendation from "../components/dashboard_components/CaloriesRecomendation";
 
@@ -19,7 +20,11 @@ function DashboardPage() {
         </Col>
         
       </Row>
-      
+      <Row className="container-fluid m-1 my-2 md-2">
+        <Col md={7}>
+          <CalorieGraph />
+        </Col>
+      </Row>
     </div>
   );
 }
